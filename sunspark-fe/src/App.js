@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import LandingPage from './components/LandingPage';
 import Sidebar from './components/Sidebar';
 import HeaderBar from './components/HeaderBar';
 import MetricCards from './components/MetricCards';
@@ -8,6 +9,9 @@ import MapView from './components/MapView';
 import { fetchProviders, fetchLeadStats, fetchLeads } from './services/api';
 
 export default function App() {
+  const [viewMode, setViewMode] = useState('landing'); // 'landing' | 'portal'
+
+  // Portal States
   const [activeTab, setActiveTab] = useState('leads'); // 'leads' | 'map'
   const [providers, setProviders] = useState([]);
   const [selectedProviderId, setSelectedProviderId] = useState('');
@@ -65,8 +69,10 @@ export default function App() {
   }, [selectedProviderId, tierFilter, searchTerm, pagination.page]);
 
   useEffect(() => {
-    loadData();
-  }, [loadData]);
+    if (viewMode === 'portal') {
+      loadData();
+    }
+  }, [viewMode, loadData]);
 
   const currentProvider = providers.find((p) => p._id === selectedProviderId);
 
@@ -74,6 +80,10 @@ export default function App() {
     setSelectedLead(updatedLead);
     loadData();
   };
+
+  if (viewMode === 'landing') {
+    return <LandingPage onLaunchPortal={() => setViewMode('portal')} />;
+  }
 
   return (
     <div className="app-container">
@@ -94,6 +104,7 @@ export default function App() {
             setSelectedProviderId(id);
             setPagination((prev) => ({ ...prev, page: 1 }));
           }}
+          onBackToLanding={() => setViewMode('landing')}
         />
 
         <div className="content-body">
