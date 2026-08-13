@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "cd sunspark-fe && npm install && npm run build",
+  "outputDirectory": "sunspark-fe/build",
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/backend/server.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
