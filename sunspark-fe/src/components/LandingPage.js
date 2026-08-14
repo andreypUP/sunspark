@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
+import PartnerModal from './PartnerModal';
+
+const APP_DOWNLOAD_URL =
+  'https://drive.usercontent.google.com/download?id=1mtqnQAoDSGv-k2pfyFWkOyY6sGDfjClD&export=download&confirm=t';
 
 export default function LandingPage({ onLaunchPortal }) {
   const [activeInstallerTab, setActiveInstallerTab] = useState('dashboard'); // 'dashboard' | 'map'
   const [menuOpen, setMenuOpen] = useState(false);
+  const [partnerModalOpen, setPartnerModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
     setMenuOpen(false);
@@ -23,6 +28,11 @@ export default function LandingPage({ onLaunchPortal }) {
   const launchPortal = () => {
     setMenuOpen(false);
     onLaunchPortal();
+  };
+
+  const openPartnerModal = () => {
+    setMenuOpen(false);
+    setPartnerModalOpen(true);
   };
 
   return (
@@ -81,10 +91,15 @@ export default function LandingPage({ onLaunchPortal }) {
               Sunspark empowers Philippine households to seamlessly evaluate solar potential, connect with verified, trusted solar developers, and secure easy bank financing—all in one place.
             </p>
             <div className="hero-cta-group">
-              <button className="btn-primary-large" onClick={() => scrollToSection('how-it-works')}>
+              <a
+                className="btn-primary-large"
+                href={APP_DOWNLOAD_URL}
+                download="Sunspark.apk"
+                rel="noopener"
+              >
                 Get Free Solar Assessment
-              </button>
-              <button className="btn-outline-large" onClick={launchPortal}>
+              </a>
+              <button className="btn-outline-large" onClick={openPartnerModal}>
                 Partner as Installer ➔
               </button>
             </div>
@@ -290,12 +305,6 @@ export default function LandingPage({ onLaunchPortal }) {
                   Geographic Map View
                 </button>
               </div>
-
-              <div className="installer-cta">
-                <button className="btn-primary-large" onClick={launchPortal}>
-                  Launch Solar Installer Portal ➔
-                </button>
-              </div>
             </div>
 
             <div className="installer-preview-frame">
@@ -371,6 +380,8 @@ export default function LandingPage({ onLaunchPortal }) {
           </div>
         </div>
       </footer>
+
+      <PartnerModal open={partnerModalOpen} onClose={() => setPartnerModalOpen(false)} />
     </div>
   );
 }
