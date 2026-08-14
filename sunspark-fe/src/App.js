@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import LandingPage from './components/LandingPage';
+import AboutPage from './components/AboutPage';
 import Sidebar from './components/Sidebar';
 import HeaderBar from './components/HeaderBar';
 import MetricCards from './components/MetricCards';
@@ -9,7 +10,7 @@ import MapView from './components/MapView';
 import { fetchProviders, fetchLeadStats, fetchLeads } from './services/api';
 
 export default function App() {
-  const [viewMode, setViewMode] = useState('landing'); // 'landing' | 'portal'
+  const [viewMode, setViewMode] = useState('landing'); // 'landing' | 'about' | 'portal'
 
   // Portal States
   const [activeTab, setActiveTab] = useState('leads'); // 'leads' | 'map'
@@ -82,7 +83,16 @@ export default function App() {
   };
 
   if (viewMode === 'landing') {
-    return <LandingPage onLaunchPortal={() => setViewMode('portal')} />;
+    return (
+      <LandingPage
+        onLaunchPortal={() => setViewMode('portal')}
+        onOpenAbout={() => setViewMode('about')}
+      />
+    );
+  }
+
+  if (viewMode === 'about') {
+    return <AboutPage onGoHome={() => setViewMode('landing')} />;
   }
 
   return (
@@ -92,6 +102,7 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         currentProvider={currentProvider}
+        onGoHome={() => setViewMode('landing')}
       />
 
       {/* Main Content Area */}

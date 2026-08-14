@@ -4,7 +4,7 @@ import PartnerModal from './PartnerModal';
 const APP_DOWNLOAD_URL =
   'https://drive.usercontent.google.com/download?id=1mtqnQAoDSGv-k2pfyFWkOyY6sGDfjClD&export=download&confirm=t';
 
-export default function LandingPage({ onLaunchPortal }) {
+export default function LandingPage({ onLaunchPortal, onOpenAbout }) {
   const [activeInstallerTab, setActiveInstallerTab] = useState('dashboard'); // 'dashboard' | 'map'
   const [menuOpen, setMenuOpen] = useState(false);
   const [partnerModalOpen, setPartnerModalOpen] = useState(false);
@@ -28,6 +28,11 @@ export default function LandingPage({ onLaunchPortal }) {
   const launchPortal = () => {
     setMenuOpen(false);
     onLaunchPortal();
+  };
+
+  const openAbout = () => {
+    setMenuOpen(false);
+    onOpenAbout();
   };
 
   const openPartnerModal = () => {
@@ -66,6 +71,7 @@ export default function LandingPage({ onLaunchPortal }) {
               <button onClick={() => scrollToSection('how-it-works')}>How it Works</button>
               <button onClick={() => scrollToSection('pillars')}>Why Sunspark</button>
               <button onClick={() => scrollToSection('installers')}>For Installers & Banks</button>
+              <button onClick={openAbout}>About Us</button>
             </nav>
 
             <div className="nav-actions">
@@ -355,7 +361,7 @@ export default function LandingPage({ onLaunchPortal }) {
               <div className="footer-col">
                 <h4>Company</h4>
                 <ul>
-                  <li><a href="#about" onClick={(e) => { e.preventDefault(); alert('About Us: Sunspark is a PhilDev innovation team driving solar accessibility across the Philippines.'); }}>About Us</a></li>
+                  <li><button onClick={openAbout}>About Us</button></li>
                   <li><a href="#careers" onClick={(e) => { e.preventDefault(); alert('Careers: We are hiring full-stack developers, solar engineers, and partnership managers!'); }}>Careers</a></li>
                 </ul>
               </div>

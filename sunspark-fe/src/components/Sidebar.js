@@ -1,12 +1,20 @@
 import React from 'react';
 
-export default function Sidebar({ activeTab, setActiveTab, currentProvider }) {
+export default function Sidebar({ activeTab, setActiveTab, currentProvider, onGoHome }) {
   return (
     <aside className="sidebar">
       {/* Brand Logo */}
-      <div className="sidebar-logo">
+      <a
+        className="sidebar-logo"
+        href="/"
+        aria-label="Sunspark home"
+        onClick={(e) => {
+          e.preventDefault();
+          onGoHome();
+        }}
+      >
         <img src="/logo.svg" alt="Sunspark Logo" />
-      </div>
+      </a>
 
       {/* Provider Card */}
       <div className="provider-profile-card">
