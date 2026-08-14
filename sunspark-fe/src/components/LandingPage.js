@@ -297,12 +297,6 @@ export default function LandingPage({ onLaunchPortal }) {
                   Geographic Map View
                 </button>
               </div>
-
-              <div className="installer-cta">
-                <button className="btn-primary-large" onClick={launchPortal}>
-                  Launch Solar Installer Portal ➔
-                </button>
-              </div>
             </div>
 
             <div className="installer-preview-frame">
