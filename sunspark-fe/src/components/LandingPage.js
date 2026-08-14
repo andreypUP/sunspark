@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 
 export default function LandingPage({ onLaunchPortal }) {
   const [activeInstallerTab, setActiveInstallerTab] = useState('dashboard'); // 'dashboard' | 'map'
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
+    setMenuOpen(false);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -11,10 +13,16 @@ export default function LandingPage({ onLaunchPortal }) {
   };
 
   const goHome = () => {
+    setMenuOpen(false);
     if (window.location.hash) {
       window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const launchPortal = () => {
+    setMenuOpen(false);
+    onLaunchPortal();
   };
 
   return (
@@ -34,19 +42,30 @@ export default function LandingPage({ onLaunchPortal }) {
             <img src="/assets/logo.svg" alt="Sunspark Logo" />
           </a>
 
-          <nav className="nav-menu">
-            <button onClick={() => scrollToSection('how-it-works')}>How it Works</button>
-            <button onClick={() => scrollToSection('pillars')}>Why Sunspark</button>
-            <button onClick={() => scrollToSection('installers')}>For Installers & Banks</button>
-          </nav>
+          <button
+            className="nav-toggle"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className={`nav-toggle-bars ${menuOpen ? 'open' : ''}`} />
+          </button>
 
-          <div className="nav-actions">
-            <button className="btn-secondary" onClick={onLaunchPortal}>
-              Installer Portal ➔
-            </button>
-            <button className="btn-primary" onClick={() => scrollToSection('how-it-works')}>
-              Get Free Assessment
-            </button>
+          <div className={`nav-collapse ${menuOpen ? 'open' : ''}`}>
+            <nav className="nav-menu">
+              <button onClick={() => scrollToSection('how-it-works')}>How it Works</button>
+              <button onClick={() => scrollToSection('pillars')}>Why Sunspark</button>
+              <button onClick={() => scrollToSection('installers')}>For Installers & Banks</button>
+            </nav>
+
+            <div className="nav-actions">
+              <button className="btn-secondary" onClick={launchPortal}>
+                Installer Portal ➔
+              </button>
+              <button className="btn-primary" onClick={() => scrollToSection('how-it-works')}>
+                Get Free Assessment
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -65,7 +84,7 @@ export default function LandingPage({ onLaunchPortal }) {
               <button className="btn-primary-large" onClick={() => scrollToSection('how-it-works')}>
                 Get Free Solar Assessment
               </button>
-              <button className="btn-outline-large" onClick={onLaunchPortal}>
+              <button className="btn-outline-large" onClick={launchPortal}>
                 Partner as Installer ➔
               </button>
             </div>
@@ -273,7 +292,7 @@ export default function LandingPage({ onLaunchPortal }) {
               </div>
 
               <div className="installer-cta">
-                <button className="btn-primary-large" onClick={onLaunchPortal}>
+                <button className="btn-primary-large" onClick={launchPortal}>
                   Launch Solar Installer Portal ➔
                 </button>
               </div>
@@ -320,7 +339,7 @@ export default function LandingPage({ onLaunchPortal }) {
                 <ul>
                   <li><button onClick={() => scrollToSection('how-it-works')}>How it Works</button></li>
                   <li><button onClick={() => scrollToSection('pillars')}>Why Sunspark</button></li>
-                  <li><button onClick={onLaunchPortal}>Installer Portal</button></li>
+                  <li><button onClick={launchPortal}>Installer Portal</button></li>
                 </ul>
               </div>
 
