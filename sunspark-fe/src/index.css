@@ -257,7 +257,18 @@ img {
   margin-bottom: 36px;
 }
 
+.app-download-note {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: -24px 0 28px;
+  max-width: 460px;
+}
+
 .btn-primary-large {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   padding: 14px 28px;
   border-radius: 12px;
   border: none;
@@ -1409,6 +1420,10 @@ img {
   .btn-primary-large,
   .btn-outline-large {
     width: 100%;
+  }
+
+  .app-download-note {
+    text-align: center;
   }
 
   .trust-metrics {

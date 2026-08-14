@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import PartnerModal from './PartnerModal';
 
+const APP_DOWNLOAD_URL =
+  'https://drive.usercontent.google.com/download?id=1mtqnQAoDSGv-k2pfyFWkOyY6sGDfjClD&export=download&confirm=t';
+
 export default function LandingPage({ onLaunchPortal }) {
   const [activeInstallerTab, setActiveInstallerTab] = useState('dashboard'); // 'dashboard' | 'map'
   const [menuOpen, setMenuOpen] = useState(false);
@@ -88,13 +91,22 @@ export default function LandingPage({ onLaunchPortal }) {
               Sunspark empowers Philippine households to seamlessly evaluate solar potential, connect with verified, trusted solar developers, and secure easy bank financing—all in one place.
             </p>
             <div className="hero-cta-group">
-              <button className="btn-primary-large" onClick={() => scrollToSection('how-it-works')}>
+              <a
+                className="btn-primary-large"
+                href={APP_DOWNLOAD_URL}
+                download="Sunspark.apk"
+                rel="noopener"
+              >
                 Get Free Solar Assessment
-              </button>
+              </a>
               <button className="btn-outline-large" onClick={openPartnerModal}>
                 Partner as Installer ➔
               </button>
             </div>
+            <p className="app-download-note">
+              Downloads the Sunspark Android app (.apk, 111 MB). On Android, allow installs from your
+              browser when prompted.
+            </p>
             <div className="trust-metrics">
               <div className="trust-item">
                 <strong>100%</strong> Verified Developers
