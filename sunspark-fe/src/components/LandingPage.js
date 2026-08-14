@@ -10,14 +10,29 @@ export default function LandingPage({ onLaunchPortal }) {
     }
   };
 
+  const goHome = () => {
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="landing-wrapper">
       {/* 1. Header / Navbar */}
       <header className="landing-navbar">
         <div className="landing-nav-container">
-          <div className="brand-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <a
+            className="brand-logo"
+            href="/"
+            aria-label="Sunspark home"
+            onClick={(e) => {
+              e.preventDefault();
+              goHome();
+            }}
+          >
             <img src="/assets/logo.svg" alt="Sunspark Logo" />
-          </div>
+          </a>
 
           <nav className="nav-menu">
             <button onClick={() => scrollToSection('how-it-works')}>How it Works</button>
@@ -40,10 +55,6 @@ export default function LandingPage({ onLaunchPortal }) {
       <section className="hero-section">
         <div className="hero-container">
           <div className="hero-text-content">
-            <div className="hero-badge">
-              <span className="spark-icon">✨</span>
-              <span>Connecting Households, Solar Installers & Banks</span>
-            </div>
             <h1 className="hero-title">
               Solar Energy Made <span className="highlight-text">Accessible</span>, <span className="highlight-text">Affordable</span> & <span className="highlight-text">Secure</span>
             </h1>
@@ -81,21 +92,6 @@ export default function LandingPage({ onLaunchPortal }) {
                 alt="Sunspark App Overview"
                 className="hero-app-screen"
               />
-              {/* Floating Stat Badges */}
-              <div className="floating-chip chip-top-left">
-                <span className="chip-icon">🎯</span>
-                <div>
-                  <div className="chip-label">Readiness Score</div>
-                  <div className="chip-val">90 / 100</div>
-                </div>
-              </div>
-              <div className="floating-chip chip-bottom-right">
-                <span className="chip-icon">⚡</span>
-                <div>
-                  <div className="chip-label">Est. Monthly Savings</div>
-                  <div className="chip-val">₱2,200 / month</div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -119,16 +115,11 @@ export default function LandingPage({ onLaunchPortal }) {
                 alt="Sunspark Community and Installers"
                 className="people-img"
               />
-              <div className="people-overlay-caption">
-                <h3>Empowering Communities Across the Philippines</h3>
-                <p>Bringing clean energy and sustainable savings to thousands of homes.</p>
-              </div>
             </div>
 
             <div className="pillars-list">
               {/* Pillar 1 */}
               <div className="pillar-card">
-                <div className="pillar-icon-box icon-shield">🛡️</div>
                 <div className="pillar-content">
                   <h3>100% Security & Trust</h3>
                   <p>
@@ -139,7 +130,6 @@ export default function LandingPage({ onLaunchPortal }) {
 
               {/* Pillar 2 */}
               <div className="pillar-card">
-                <div className="pillar-icon-box icon-money">💰</div>
                 <div className="pillar-content">
                   <h3>Affordable Bank Financing</h3>
                   <p>
@@ -150,7 +140,6 @@ export default function LandingPage({ onLaunchPortal }) {
 
               {/* Pillar 3 */}
               <div className="pillar-card">
-                <div className="pillar-icon-box icon-sun">☀️</div>
                 <div className="pillar-content">
                   <h3>Uncertainty Eliminated</h3>
                   <p>
@@ -273,13 +262,13 @@ export default function LandingPage({ onLaunchPortal }) {
                   className={`tab-btn ${activeInstallerTab === 'dashboard' ? 'active' : ''}`}
                   onClick={() => setActiveInstallerTab('dashboard')}
                 >
-                  📊 Leads Dashboard
+                  Leads Dashboard
                 </button>
                 <button
                   className={`tab-btn ${activeInstallerTab === 'map' ? 'active' : ''}`}
                   onClick={() => setActiveInstallerTab('map')}
                 >
-                  📍 Geographic Map View
+                  Geographic Map View
                 </button>
               </div>
 
@@ -315,10 +304,11 @@ export default function LandingPage({ onLaunchPortal }) {
           <div className="footer-top">
             <div className="footer-brand">
               <img
-                src="/assets/logo_with_moto.png"
-                alt="Sunspark - Solar Energy Made Simple"
-                className="footer-logo-motto"
+                src="/assets/logo.svg"
+                alt="Sunspark"
+                className="footer-logo"
               />
+              <p className="footer-motto">Bringing solar, one home at a time.</p>
               <p className="footer-bio">
                 Connecting Philippine households, verified solar installers, and leading banks to accelerate clean energy adoption.
               </p>
