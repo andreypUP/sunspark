@@ -103,10 +103,6 @@ export default function LandingPage({ onLaunchPortal }) {
                 Partner as Installer ➔
               </button>
             </div>
-            <p className="app-download-note">
-              Downloads the Sunspark Android app (.apk, 111 MB). On Android, allow installs from your
-              browser when prompted.
-            </p>
             <div className="trust-metrics">
               <div className="trust-item">
                 <strong>100%</strong> Verified Developers
