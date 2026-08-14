@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 
 const TEAM = [
-  { name: 'Ian Jure Macasilang', role: 'Lead Engineer', photo: '/assets/team/ian-jure-macasilang.jpg' },
-  { name: 'Loryjane Wallace Elison', role: 'Business Development Lead', photo: '/assets/team/loryjane-wallace-elison.jpg' },
+  { name: 'Ian Jure Macasilang', role: 'Lead Engineer', photo: '/assets/team/ian-jure-macasilang.png' },
+  { name: 'Loryjane Wallace Elison', role: 'Business Development Lead', photo: '/assets/team/loryjane-wallace-elison.png' },
   { name: 'Mark Andrey Acebu', role: 'Full-Stack Engineer', photo: '/assets/team/mark-andrey-acebu.jpg' },
-  { name: 'Rexnardski Sumalinog', role: 'Product Designer', photo: '/assets/team/rexnardski-sumalinog.jpg' },
-  { name: 'Cyrille Jae Tecson', role: 'Finance & Operations Lead', photo: '/assets/team/cyrille-jae-tecson.jpg' },
+  { name: 'Rexnardski Sumalinog', role: 'Product Designer', photo: '/assets/team/rexnardski-sumalinog.png' },
+  { name: 'Cyrille Jae Tecson', role: 'Finance & Operations Lead', photo: '/assets/team/cyrille-jae-tecson.png' },
 ];
 
 const initials = (name) =>
