@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import PartnerModal from './PartnerModal';
 
 export default function LandingPage({ onLaunchPortal }) {
   const [activeInstallerTab, setActiveInstallerTab] = useState('dashboard'); // 'dashboard' | 'map'
   const [menuOpen, setMenuOpen] = useState(false);
+  const [partnerModalOpen, setPartnerModalOpen] = useState(false);
 
   const scrollToSection = (id) => {
     setMenuOpen(false);
@@ -23,6 +25,11 @@ export default function LandingPage({ onLaunchPortal }) {
   const launchPortal = () => {
     setMenuOpen(false);
     onLaunchPortal();
+  };
+
+  const openPartnerModal = () => {
+    setMenuOpen(false);
+    setPartnerModalOpen(true);
   };
 
   return (
@@ -84,7 +91,7 @@ export default function LandingPage({ onLaunchPortal }) {
               <button className="btn-primary-large" onClick={() => scrollToSection('how-it-works')}>
                 Get Free Solar Assessment
               </button>
-              <button className="btn-outline-large" onClick={launchPortal}>
+              <button className="btn-outline-large" onClick={openPartnerModal}>
                 Partner as Installer ➔
               </button>
             </div>
@@ -371,6 +378,8 @@ export default function LandingPage({ onLaunchPortal }) {
           </div>
         </div>
       </footer>
+
+      <PartnerModal open={partnerModalOpen} onClose={() => setPartnerModalOpen(false)} />
     </div>
   );
 }
