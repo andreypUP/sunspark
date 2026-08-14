@@ -595,9 +595,9 @@ img {
 }
 
 .tab-btn.active {
-  background-color: #FFFBEB;
-  border-color: #FCD34D;
-  color: #D97706;
+  background-color: #F0FDF4;
+  border-color: var(--primary-brand);
+  color: var(--brand-green-dark);
 }
 
 .installer-preview-frame {
